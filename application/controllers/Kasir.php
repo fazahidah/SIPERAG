@@ -25,7 +25,7 @@ class Kasir extends CI_controller
         $transaksi = [
             'kode_user' => @$_SESSION['kode_user'],
             'kode_transaksi' => $kode,
-            'tanggal' => date("Y-m-d"),
+            'tanggal' => date("Y-m-7"),
             'grand_total' => $post['total'],
             'total_bayar' => "",
             'catatan' => ""

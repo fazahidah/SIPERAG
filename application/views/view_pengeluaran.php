@@ -15,7 +15,7 @@
 	<section class="content">
 
 		<!-- Default box -->
-		<div class="card collapsed-card">
+		<div class="card ">
 			<div class="card-header" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
 				<h3 class="card-title">Tambah Produk</h3>
 

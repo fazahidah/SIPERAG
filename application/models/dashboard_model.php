@@ -28,4 +28,15 @@ class Dashboard_model extends CI_model
         $akhir = date("Y-m-d");
         return $this->db->query("SELECT transaksi.tanggal, sum(transaksi.grand_total) as total, SUM(pengeluaran.jumlah_pengeluaran) as pengeluaran FROM transaksi LEFT JOIN pengeluaran ON pengeluaran.tanggal = transaksi.tanggal WHERE transaksi.tanggal >= '".$awal."'  AND transaksi.tanggal <= '".$akhir."' GROUP BY transaksi.tanggal")->result();
     }
+    public function dataChartPendapatan(){
+        $awal = date("Y-m-01");
+        $akhir = date("Y-m-d");
+        return $this->db->query("SELECT transaksi.tanggal, sum(transaksi.grand_total) as total FROM transaksi WHERE transaksi.tanggal >= '".$awal."' AND transaksi.tanggal <= '".$akhir."' GROUP BY transaksi.tanggal")->result();
+    }
+
+    public function dataChartPengeluaran(){
+        $awal = date("Y-m-01");
+        $akhir = date("Y-m-d");
+        return $this->db->query("SELECT pengeluaran.tanggal, sum(pengeluaran.jumlah_pengeluaran) as total FROM pengeluaran WHERE pengeluaran.tanggal >= '".$awal."' AND pengeluaran.tanggal <= '".$akhir."' GROUP BY pengeluaran.tanggal")->result();
+    }
 }

@@ -135,9 +135,32 @@ $this->load->view("template/sidebar");
 ?>
 <script>
   window.onload = function() {
-  
+  let tgl1 = [<?php foreach($dataChartPendapatan as $data){ echo "'".$data->tanggal."',"; }?>];
+  let tgl2 = [<?php foreach($dataChartPengeluaran as $data){ echo "'".$data->tanggal."',"; }?>];
+  let pengeluaran = [<?php foreach($dataChartPengeluaran as $data){ echo "'".$data->total."',"; }?>];
+  let tglConcat = tgl1.concat(tgl2);
+  let length = tgl1.length + tgl2.length;
+  let result = [];
+  for (let index = 0; index < length; index++) {
+    let cek = result.indexOf(tglConcat[index]);
+    if (cek == -1) {
+      result.push(tglConcat[index]);
+    }
+  }
+  let len = result.length;
+  let res_pengeluaran = []
+  let i = 0;
+  while (tgl2.length > 0) {
+    if (result[i] == tgl2[0]) {
+      res_pengeluaran.push(pengeluaran.shift());
+      tgl2.shift();
+    }else{
+      res_pengeluaran.push(0);
+    }
+    i++;
+  }
   var salesChartData = {
-    labels  : [<?php foreach($dataChart as $data){ echo "'".$data->tanggal."',"; }?>],
+    labels  : result,
     datasets: [
       {
         label               : 'Pendapatan',
@@ -148,18 +171,18 @@ $this->load->view("template/sidebar");
         pointStrokeColor    : 'rgba(60,141,188,1)',
         pointHighlightFill  : '#fff',
         pointHighlightStroke: 'rgba(60,141,188,1)',
-        data                : [<?php foreach($dataChart as $data){ echo "'".$data->total."',"; }?>]
+        data                : [<?php foreach($dataChartPendapatan as $data){ echo "'".$data->total."',"; }?>]
       },
       {
         label               : 'Pengeluaran',
-        backgroundColor     : 'rgba(210, 214, 222, 1)',
-        borderColor         : 'rgba(210, 214, 222, 1)',
-        pointRadius         : false,
-        pointColor          : 'rgba(210, 214, 222, 1)',
+        backgroundColor     : 'rgba(210, 50, 50, 1)',
+        borderColor         : 'rgba(210, 50, 50, 1)',
+        pointRadius         : true,
+        pointColor          : 'rgba(210, 50, 50, 1)',
         pointStrokeColor    : '#c1c7d1',
         pointHighlightFill  : '#fff',
         pointHighlightStroke: 'rgba(220,220,220,1)',
-        data                : [<?php foreach($dataChart as $data){ echo "'".$data->pengeluaran."',"; }?>]
+        data                : res_pengeluaran
       },
     ]
   }

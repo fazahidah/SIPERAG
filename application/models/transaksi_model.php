@@ -77,9 +77,9 @@ class Transaksi_model extends CI_model
         if ($filter == "") {
             $awal = date("Y-m-01");
             $akhir = date("Y-m-d");
-            return $this->db->query("SELECT sum(pengeluaran.jumlah_pengeluaran) as total FROM pengeluaran WHERE pengeluaran.tanggal >= '".$awal."' AND pengeluaran.tanggal <= '".$akhir."' GROUP BY pengeluaran.tanggal")->result();
+            return $this->db->query("SELECT sum(pengeluaran.jumlah_pengeluaran) as total FROM pengeluaran WHERE pengeluaran.tanggal >= '".$awal."' AND pengeluaran.tanggal <= '".$akhir."'")->result();
         }else{
-            return $this->db->query("SELECT sum(pengeluaran.jumlah_pengeluaran) as total FROM pengeluaran WHERE pengeluaran.tanggal >= '".$filter['awal']."' AND pengeluaran.tanggal <= '".$filter['akhir']."' GROUP BY pengeluaran.tanggal")->result();
+            return $this->db->query("SELECT sum(pengeluaran.jumlah_pengeluaran) as total FROM pengeluaran WHERE pengeluaran.tanggal >= '".$filter['awal']."' AND pengeluaran.tanggal <= '".$filter['akhir']."'")->result();
         }
     }
 

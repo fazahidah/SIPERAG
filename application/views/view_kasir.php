@@ -131,15 +131,17 @@ $this->load->view("template/js");
 		kategori();
 	})
 	
-	$("#tableKasir").on("click",".btnDelete",function(){
-			let id = $(this).data("id");
-			let subtotal = $(this).data("subtotal");
-			let total = $("#total").val();
-			$("#total").val(parseInt(total - subtotal))
-            $("#" + id).remove();
-	})
-
 	var data = [];
+
+	$("#tableKasir").on("click",".btnDelete",function(){
+		let counter = $("#counter").val();
+		let id = $(this).data("id");
+		let subtotal = $(this).data("subtotal");
+		let total = $("#total").val();
+		let id_produk = $("#id_produk"+counter).val();
+		$("#total").val(parseInt(total - subtotal))
+		$("#" + id).remove();
+	})
 
 	$("#tableMenu").on("click",".pilih_menu", function(){
 		let counter = $("#counter").val();
@@ -168,7 +170,7 @@ $this->load->view("template/js");
 				<tr id="data` + counter + `">
 					<th>` + counter + `</th>
 					<td>` + nama + `</td>
-					<input type="hidden" name="id_produk[]" value="` + id_produk + `">
+					<input type="hidden" id="id_produk`+counter+`" name="id_produk[]" value="` + id_produk + `">
 					<input type="hidden" name="nama[]" value="` + nama + `">
 					<td>` + harga +`</td>
 					<input type="hidden" name="harga[]" value="` + harga + `">
