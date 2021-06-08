@@ -24,7 +24,9 @@ class Produk extends CI_controller
         $data = [
             'nama'=> $post['inputMenu'],
             'harga'=> $post['inputHarga'],
-            'id_kategori'=> $post['inputKategori']
+            'id_kategori'=> $post['inputKategori'],
+            'kode_usaha' => $_SESSION['kode_usaha'],
+            'kode_cabang' => $_SESSION['kode_cabang']
         ];
         if ($this->produk_model->inputData("produk",$data)) {
             redirect(site_url("produk"));
@@ -35,6 +37,8 @@ class Produk extends CI_controller
         $post = $this->input->post();
         $data = [
             'kategori'=> $post['inputKategori'],
+            'kode_usaha' => $_SESSION['kode_usaha'],
+            'kode_usaha' => $_SESSION['kode_usaha']
         ];
         if ($this->produk_model->inputData("kategori",$data)) {
             redirect(site_url("produk/kategori"));

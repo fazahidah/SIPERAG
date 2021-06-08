@@ -21,6 +21,13 @@
 </head>
 <body class="hold-transition login-page">
 <div class="login-box">
+<?php if(@$_SESSION['register_msg']): ?>
+  <div class="alert alert-success alert-dismissible">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+      <h5><i class="icon fas fa-check"></i> Selamat ! </h5>
+      <?= @$this->session->flashdata("register_msg") ?>
+  </div>
+<?php endif ?>
   <div class="login-logo">
     <a href="<?= base_url("assets")?>/index2.html"><b>Dodolan</b></a>
   </div>
@@ -29,7 +36,7 @@
     <div class="card-body login-card-body">
       <p class="login-box-msg">Sign in to start your session</p>
 
-      <form action="<?= site_url("login")?>/auth" method="post">
+      <form action="<?= site_url("auth")?>/login" method="post">
         <div class="input-group mb-3">
           <input type="text" name="username" class="form-control" placeholder="Username">
           <div class="input-group-append">

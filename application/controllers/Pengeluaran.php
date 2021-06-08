@@ -10,17 +10,31 @@ class Pengeluaran extends CI_controller
 
     public function index(){
         $data['dataTable'] = $this->pengeluaran_model->dataTable();
+        $data['dataCabang'] = $this->pengeluaran_model->getCabang();
         $this->load->view("view_pengeluaran",$data);
     }
 
     public function tambah_pengeluaran(){
         $post = $this->input->post();
-        $data = [
-            'kode_user' => $_SESSION['kode_user'],
-            'keterangan' => $post['addKeterangan'],
-            'jumlah_pengeluaran' => $post['addJumlah'],
-            'tanggal' => $post['addTanggal']
-        ];
+        if ($_SESSION['role'] == "OWNER") {
+            $data = [
+                'kode_user' => $_SESSION['kode_user'],
+                'kode_cabang' => $post['cabang'],
+                'kode_usaha' => $_SESSION['kode_usaha'],
+                'keterangan' => $post['addKeterangan'],
+                'jumlah_pengeluaran' => $post['addJumlah'],
+                'tanggal' => $post['addTanggal']
+            ];            
+        }else{
+            $data = [
+                'kode_user' => $_SESSION['kode_user'],
+                'kode_cabang' => $_SESSION['kode_cabang'],
+                'kode_usaha' => $_SESSION['kode_usaha'],
+                'keterangan' => $post['addKeterangan'],
+                'jumlah_pengeluaran' => $post['addJumlah'],
+                'tanggal' => $post['addTanggal']
+            ]; 
+        }
         $this->pengeluaran_model->insertData("pengeluaran",$data);
         redirect(site_url("pengeluaran"));
     }
@@ -43,4 +57,6 @@ class Pengeluaran extends CI_controller
         redirect(site_url("pengeluaran"));
 
     }
+
+    
 }

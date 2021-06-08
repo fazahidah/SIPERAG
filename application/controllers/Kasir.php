@@ -11,6 +11,7 @@ class Kasir extends CI_controller
     public function index(){
         $data['dataProduk'] = $this->kasir_model->showProduk();
         $data['kategori'] = $this->kasir_model->getKategori();
+        $data['dataCabang'] = $this->kasir_model->getCabang();
         $this->load->view("view_kasir",$data);
     }
 
@@ -22,14 +23,30 @@ class Kasir extends CI_controller
     public function transaksi(){
         $post = $this->input->post();
         $kode = $this->createKodeTransaksi();
-        $transaksi = [
-            'kode_user' => @$_SESSION['kode_user'],
-            'kode_transaksi' => $kode,
-            'tanggal' => date("Y-m-7"),
-            'grand_total' => $post['total'],
-            'total_bayar' => "",
-            'catatan' => ""
-        ];
+        $transaksi = [];
+        if ($_SESSION['role'] == "OWNER") {
+            $transaksi = [
+                'kode_user' => @$_SESSION['kode_user'],
+                'kode_transaksi' => $kode,
+                'kode_cabang' => $post['cabang'],
+                'kode_usaha' => $_SESSION['kode_usaha'],
+                'tanggal' => date("Y-m-7"),
+                'grand_total' => $post['total'],
+                'total_bayar' => "",
+                'catatan' => ""
+            ];
+        }else{
+            $transaksi = [
+                'kode_user' => @$_SESSION['kode_user'],
+                'kode_transaksi' => $kode,
+                'kode_cabang' => $_SESSION['kode_cabang'],
+                'kode_usaha' => $_SESSION['kode_usaha'],
+                'tanggal' => date("Y-m-d"),
+                'grand_total' => $post['total'],
+                'total_bayar' => "",
+                'catatan' => ""
+            ];
+        }
         $this->kasir_model->insertData("transaksi",$transaksi);
         foreach ($post['id_produk'] as $key => $val) {
             $detailTransaksi = [

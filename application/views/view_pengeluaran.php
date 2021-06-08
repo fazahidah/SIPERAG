@@ -26,26 +26,37 @@
 				</div>
 			</div>
 			<div class="card-body">
-				<div class="row">
-					<form action="<?=site_url("pengeluaran/tambah_pengeluaran")?>" method="post" class="form-inline col-12">
-						<div class="form-group col-4">
-							<label for="addKeterangan">Keterangan:</label>
-							<input type="text" name="addKeterangan" id="addKeterangan" class="form-control"
-								placeholder="ex: Beli Susu" aria-describedby="addKeterangan" required>
-						</div>
-						<div class="form-group col-4">
-							<label for="addJumlah">Jumlah</label>
-							<input type="number" name="addJumlah" id="addJumlah" class="form-control"
-								placeholder="ex: 5000" aria-describedby="addJumlah" required>
-						</div>
-						<div class="form-group col-3">
-							<label for="addTanggal">Tanggal</label>
-							<input type="date" name="addTanggal" id="addTanggal" class="form-control"
-								placeholder="ex: 5000" aria-describedby="addTanggal" required>
-						</div>
-						<button type="submit" class="btn btn-primary">Submit</button>
-					</form>
+				<form action="<?=site_url("pengeluaran/tambah_pengeluaran")?>" method="post">
+				<div class="row col-12">
+					<?php if($_SESSION['role'] == "OWNER"): ?>
+					<div class="form-group col-3">
+					  <label for="cabang">Pilih Cabang</label>
+					  <select class="form-control form-control" name="cabang" id="cabang">
+						<option disabled selected required>-Pilih Cabang-</option>
+						<?php foreach($dataCabang as $d): ?>
+						<option value="<?=$d->kode_cabang?>"><?= $d->nama ?></option>
+						<?php endforeach ?>
+					  </select>
+					</div>
+					<?php endif ?>
+					<div class="form-group <?=($_SESSION['role'] == "OWNER")? "col-3" : "col-4"?>">
+						<label for="addKeterangan">Keterangan:</label>
+						<input type="text" name="addKeterangan" id="addKeterangan" class="form-control"
+							placeholder="ex: Beli Susu" aria-describedby="addKeterangan" required>
+					</div>
+					<div class="form-group <?=($_SESSION['role'] == "OWNER")? "col-3" : "col-4"?>">
+						<label for="addJumlah">Jumlah</label>
+						<input type="number" name="addJumlah" id="addJumlah" class="form-control"
+							placeholder="ex: 5000" aria-describedby="addJumlah" required>
+					</div>
+					<div class="form-group <?=($_SESSION['role'] == "OWNER")? "col-3" : "col-4"?>">
+						<label for="addTanggal">Tanggal</label>
+						<input type="date" name="addTanggal" id="addTanggal" class="form-control"
+							placeholder="ex: 5000" aria-describedby="addTanggal" required>
+					</div>
 				</div>
+				<button type="submit" class="btn btn-primary float-right">Submit</button>
+				</form>
 			</div>
 			<!-- /.card-body -->
 		</div>

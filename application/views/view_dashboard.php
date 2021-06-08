@@ -23,7 +23,7 @@ $this->load->view("template/sidebar");
 
             <div class="info-box-content">
               <span class="info-box-text">Pendapatan</span>
-              <span class="info-box-number"><?=$box_pendapatan[0]->pendapatan?></span>
+              <span class="info-box-number"><?=(empty($box_pendapatan[0]->pendapatan))? "0": $box_pendapatan[0]->pendapatan ?></span>
             </div>
             <!-- /.info-box-content -->
           </div>
@@ -36,7 +36,7 @@ $this->load->view("template/sidebar");
 
             <div class="info-box-content">
               <span class="info-box-text">Pangeluaran</span>
-              <span class="info-box-number"><?=$box_pengeluaran[0]->pengeluaran?></span>
+              <span class="info-box-number"><?=(empty($box_pengeluaran[0]->pengeluaran))? "0" : $box_pengeluaran[0]->pengeluaran ?></span>
             </div>
             <!-- /.info-box-content -->
           </div>
@@ -53,7 +53,7 @@ $this->load->view("template/sidebar");
 
             <div class="info-box-content">
               <span class="info-box-text">Produk Terjual</span>
-              <span class="info-box-number"><?=$box_produk_terjual[0]->produk_terjual?></span>
+              <span class="info-box-number"><?=(empty($box_produk_terjual[0]->produk_terjual))? "0" : $box_produk_terjual[0]->produk_terjual ?></span>
             </div>
             <!-- /.info-box-content -->
           </div>

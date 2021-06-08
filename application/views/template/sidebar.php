@@ -23,6 +23,7 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
+          <?php if($_SESSION['role'] == "OWNER" || $_SESSION['role'] == "MANAGER"): ?>
           <li class="nav-item">
             <a href="<?=site_url('dashboard')?>" class="nav-link">
               <i class="nav-icon fas fa-tachometer-alt"></i>
@@ -31,6 +32,7 @@
               </p>
             </a>
           </li>
+          <?php endif ?>
           <li class="nav-item">
             <a href="<?=site_url('kasir')?>" class="nav-link">
               <i class="nav-icon fas fa-cash-register"></i>
@@ -39,6 +41,7 @@
               </p>
             </a>
           </li>
+          <?php if($_SESSION['role'] == "OWNER" || $_SESSION['role'] == "MANAGER"): ?>
           <li class="nav-item">
             <a href="<?=site_url("pengeluaran")?>" class="nav-link">
               <i class="nav-icon fas fa-chart-line"></i>
@@ -86,8 +89,55 @@
               </li>
             </ul>
           </li>
+          <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-table"></i>
+              <p>
+                Manajemen Cabang
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="<?=site_url("cabang")?>" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Daftar Cabang</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="<?=site_url("cabang/tambah_cabang")?>" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Tambah Cabang</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-table"></i>
+              <p>
+                Manajemen Karyawan
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="<?=site_url("Karyawan")?>" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Daftar Karyawan</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="<?=site_url("Karyawan/tambah_karyawan")?>" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Tambah Karyawan</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <?php endif ?>
           <li class="nav-item">
-            <a href="<?=site_url("login/logout")?>" class="nav-link">
+            <a href="<?=site_url("Auth/logout")?>" class="nav-link">
               <i class="nav-icon fas fa-sign-out-alt"></i>
               <p>
                 Keluar

@@ -12,13 +12,25 @@ $this->load->view("template/sidebar");
 
 	<!-- Main content -->
 	<section class="content">
-
+	<form action="<?=site_url("kasir/transaksi")?>" method="post">
+		<?php if($_SESSION['role'] == "OWNER"): ?>
+		<div class="col-12">
+			<div class="form-group form-inline">
+			  <label class="col-2" for="cabang">Pilih Cabang</label>
+			  <select class="form-control form-control-sm col-2" name="cabang" id="cabang" required>
+				<option disabled selected value>-Pilih Cabang-</option>
+				<?php foreach($dataCabang as $p): ?>
+				<option value="<?=$p->kode_cabang?>"><?=$p->nama?></option>
+				<?php endforeach ?>
+			  </select>
+			</div>
+		</div>
+		<?php endif ?>
 		<div class="row">
 			<div class="col-6">
 				<!-- Custom Tabs -->
 				<div class="card">
-					<div class="card-header d-flex p-0">
-					</div><!-- /.card-header -->
+					<!-- /.card-header -->
 					<div class="card-body">
 						<div class="tab-content">
 							<div class="tab-pane active" id="tab_1">
@@ -56,7 +68,6 @@ $this->load->view("template/sidebar");
 
 			<!-- Default box -->
 			<div class="card col-6">
-				<form action="<?=site_url("kasir/transaksi")?>" method="post" class="card-body">
 					<input type="hidden" id="counter" value="0">
                     <table id="tableKasir" class="table">
                         <thead>
@@ -79,7 +90,6 @@ $this->load->view("template/sidebar");
 						</div>
 						<button type="submit" class="btn btn-primary">Submit</button>
 					</div>
-				</form>
 				<!-- /.card-body -->
 			</div>
 			<!-- /.card -->
@@ -87,6 +97,7 @@ $this->load->view("template/sidebar");
 		</div>
 		<!-- /.row -->
 		<!-- END CUSTOM TABS -->
+		</form>
 
 	</section>
 	<!-- /.content -->
@@ -139,7 +150,7 @@ $this->load->view("template/js");
 		let subtotal = $(this).data("subtotal");
 		let total = $("#total").val();
 		let id_produk = $("#id_produk"+counter).val();
-		$("#total").val(parseInt(total - subtotal))
+			$("#total").val(parseInt(total - subtotal))
 		$("#" + id).remove();
 	})
 
