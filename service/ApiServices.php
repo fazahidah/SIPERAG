@@ -25,9 +25,6 @@ function createNoAkta(){
 }
 
 
-//if ($Request == "daftar_barang") {
-//    $getData = $db->select("SELECT * FROM daftar_barang");
-//}
 if ($Request == "login") {
     $username = $_POST['username'];
     $auth = $db->select("SELECT * FROM user WHERE username = '". mysqli_real_escape_string($db->koneksi,$username)."'");
@@ -38,9 +35,14 @@ if ($Request == "login") {
             // $db->update("user_login",["token"=>$tokenID],$auth[0]['id']);
             $_SESSION["token"] = $tokenID;
             $_SESSION["username"] = $username;
+            $_SESSION["role"] = $auth[0]['role'];
             $_SESSION["nama"] = $auth[0]['nama'];
             $_SESSION["kode_user"] = $auth[0]['kode_user'];
-            header("location: ../dashboard.php");
+            if ($auth[0]['role'] == "USER") {
+                header("location: ../dashboard.php");
+            }else{
+                header("location: ../admin.php");
+            }
         }else {
             setcookie("alert","Password Salah !", time() + (15),"/");
             header("location: ../index.php");
@@ -59,7 +61,7 @@ elseif ($Request == "register") {
     $email = $_POST['email'];
     $alamat = strtoupper($_POST['alamat']);
     $kode_user = createKodeUser();
-    $role = createRole();
+    $role = "USER";
     $data = [
         "kode_user" => $kode_user,
         "NIK" => $NIK,
@@ -68,7 +70,7 @@ elseif ($Request == "register") {
         "role" => $role,
         "nama" => $nama,
         "username" => $username,
-        "password" => password_hash($password,PASSWORD_BCRYPT),
+        "password" => password_hash($password,PASSWORD_DEFAULT),
         "email" => $email
     ];
     $db->insert("user",$data);
@@ -148,10 +150,7 @@ elseif($Request == "postortu"){
     $_SESSION['$NIKibu'] = $NIKibu;
     $_SESSION['$NIKayah'] = $NIKayah;
     header("location: ../form_bayi.php");
-}
-
-
-elseif($Request == "postbayi"){
+}elseif($Request == "postbayi"){
     $nopermo = createNoPermohonan();
     $noaktak = createNoAkta();
     $namabayi = $_POST['namabayi'];
@@ -227,9 +226,7 @@ elseif($Request == "postsaksi"){
     $db->insert("data_saksi",$datasaksi1);
     $db->insert("data_saksi",$datasaksi2);
     header("location: ../uploadfile.php");
-}
-
-elseif($Request == "postupload"){
+}elseif($Request == "postupload"){
     $berkas1 = $_POST['berkas1'];
     $berkas2 = $_POST['berkas2'];
     $berkas3 = $_POST['berkas3'];
@@ -244,6 +241,20 @@ elseif($Request == "postupload"){
     ];
     $db->insert("data_permohonan",$datasaksi1);
     header("location: ../verifikasi.php");
+}elseif($Request == "persetujuan"){
+    $p = $_POST;
+    $data = [
+        'no_permohonan'=>$p['noPermohonan'],
+        'status'=>$p['addPersetujuan'],
+        'id_user'=>$_SESSION['idUser'],
+        'keterangan'=>$p['addKeterangan']
+    ];
+    $db->insert("persetujuan",$data);
+    header("location: ../admin.php");
+}elseif($Request == "faceVerif"){
+    if (!empty($_FILES['faceVerif'])) {
+        $_SESSION['info'] = "Berhasil";
+    }
 }
 
 elseif($Request == "logout"){
