@@ -26,7 +26,7 @@ include_once("_header.php");
 	<div class="container">
 		<table id="table" class="table table-striped">
 			<?php
-      $getPermohonan = $db->select("SELECT k.*,p.status,p.tgl_disetujui FROM akta_kelahiran k LEFT JOIN persetujuan p ON p.no_permohonan = k.no_permohonan ORDER BY 'DESC'");  
+      $getPermohonan = $db->select("SELECT k.*,p.status,p.tgl_disetujui FROM akta_kelahiran k LEFT JOIN persetujuan p ON p.no_permohonan = k.no_permohonan WHERE p.status != 'NULL' ORDER BY 'DESC'");  
     ?>
 			<thead>
 				<tr>

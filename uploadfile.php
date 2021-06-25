@@ -32,7 +32,6 @@ include_once("_header.php");
     <input name="berkas3" type="file" class="form-control-file" id="berkas3">
   </div>
   <div class="col text-center">
-        <input type="hidden" name="req" value="postupload">
         <button type="submit" class="btn btn-success">Upload dan Lanjutkan</button>
     </div>
 </form>

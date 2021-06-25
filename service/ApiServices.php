@@ -292,6 +292,11 @@ elseif($Request == "postsaksi"){
         header("location: ../daftar_permohonan.php");
     }
         
+}elseif($Request == "uploadFile"){
+    if (!empty($_POST)) {
+        $_SESSION['msg'] = "Berhasil";
+        header("location: ../daftar_permohonan.php");
+    }
 }elseif($Request == "verifikasiKTP"){
     $data = [
         'verif' => 1
