@@ -20,7 +20,7 @@
     <h2 style="font-family: Comfortaa; text-align: center;"><b>SIPERAG</b></h2>
     <h6 style="font-family: Comfortaa; text-align: center;"><b>Sistem Pelayanan Rakyat Gresik</b></h6>
     <form id="loginForm" method="post" action="service/ApiServices.php">
-        <div class="login">
+        <div class="login col-md-12">
             <div class="col-md-12">
                 <div class="form-group">
                     <input type="text" class="form-control" id="username" name="username" tabindex="1"

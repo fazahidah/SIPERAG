@@ -252,9 +252,55 @@ elseif($Request == "postsaksi"){
     $db->insert("persetujuan",$data);
     header("location: ../admin.php");
 }elseif($Request == "faceVerif"){
-    if (!empty($_FILES['faceVerif'])) {
+    $getImage = $db->select("SELECT * FROM user");
+        if (!empty($_FILES['faceVerif'])) {
+        $curl = curl_init();
+        $file = $_FILES['faceVerif'];
+        curl_setopt_array($curl, [
+            CURLOPT_URL => "https://face-verification2.p.rapidapi.com/FaceVerification",
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_ENCODING => "",
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 30,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => "POST",
+            CURLOPT_POSTFIELDS => "
+            -----011000010111000001101001\r\nContent-Disposition: form-data; 
+            name=\"".$file."\"\r\n\r\n\r\n
+            -----011000010111000001101001\r\nContent-Disposition: form-data; 
+            name=\"".$getImage[0]['nama']."\"\r\n\r\n\r\n
+            -----011000010111000001101001--\r\n\r\n",
+            CURLOPT_HTTPHEADER => [
+                "content-type: multipart/form-data; boundary=---011000010111000001101001",
+                "x-rapidapi-host: face-verification2.p.rapidapi.com",
+                "x-rapidapi-key: 917f3c8964msh3571db277197c93p16b1cdjsn68a8c8ca234c"
+            ],
+        ]);
+
+        $response = curl_exec($curl);
+        $err = curl_error($curl);
+
+        curl_close($curl);
+
+        if ($err) {
+            echo "cURL Error #:" . $err;
+        } else {
+            echo $response;
+        }
         $_SESSION['info'] = "Berhasil";
+        header("location: ../daftar_permohonan.php");
     }
+        
+}elseif($Request == "verifikasiKTP"){
+    $data = [
+        'verif' => 1
+    ];
+    $id = [
+        'id_user' => $_POST['idUser']
+    ];
+    $db->update("user",$data,$id);
+    header("location: ../dashboard.php");
 }
 
 elseif($Request == "logout"){

@@ -11,10 +11,12 @@ include_once("_header.php");
     </div>
     <br>
 
+    <?php $cek = $db->select("SELECT * FROM user WHERE username = '".$_SESSION['username']."' "); ?>
+
     <div class="container">
       <div class="row">
         <div class="col-md-12">
-          <div class="shadow p-3 mb-2 bg-body rounded custom1"><h4>Permohonan Baru</h4> <a href="verification.php" class="pull-right">Verifikasi Akun</a></div>
+          <div class="shadow p-3 mb-2 bg-body rounded custom1"><h4>Permohonan Baru</h4> <?php if($cek[0]['verif'] == 0): ?><a href="verification.php" class="pull-right">Verifikasi Akun</a> <?php endif ?></div>
         </div>
       </div>
     </div>

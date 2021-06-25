@@ -45,12 +45,11 @@
 		</div>
 	</div>
 	<br>
-	<form id="loginForm" method="post" action="service/apiservices.php?req=verify">
 		<div class="container">
 			<div class="red">
 				<p class="fst-normal font-custom2"><b>Upload file KTP</b></p>
 			</div>
-			<input class="form-control form-custom" name="file" type="file" id="formFile">
+			<input class="form-control form-custom" name="file1" type="file" id="formFile1" accept="image/*" capture="user">
 		</div>
 		<br>
 
@@ -58,18 +57,19 @@
 			<div class="red">
 				<p class="fst-normal font-custom2"><b>Upload file selfie dengan KTP</b></p>
 			</div>
-			<input class="form-control form-custom" type="file" id="formFile">
+			<input class="form-control form-custom" type="file" id="formFile2" accept="image/*" capture="user">
 		</div>
 		<br>
 
 		<div class="col text-center">
 			<a href="dashboard.php"><button type="button" class="btn btn-danger">Kembali ke Halaman Awal</button></a>
 			<div>
-				<!--  <input type="hidden" name="req" value="verification"> -->
-				<button type="button" class="btn btn-success" href="dashboard.php">Daftar</button>
+				<form action="service/ApiServices.php?req=verifikasiKTP" method="post">
+					<input type="hidden" name="idUser" value="12"> <!-- Disini Valuenya samean ganti sayang, menyesuaikan id user -->
+					<button type="submit" class="btn btn-success" >Verifikasi</button>
+				</form>
 			</div>
 		</div>
-	</form>
 
 	<br>
 	<br>
