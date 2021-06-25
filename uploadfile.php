@@ -21,14 +21,18 @@ include_once("_header.php");
     <form>
   <div class="form-group">
     <label for="exampleFormControlFile1">Upload Surat pertanggungjawaban suami istri</label>
-    <input type="file" class="form-control-file" id="exampleFormControlFile1">
+    <input name="berkas1" type="file" class="form-control-file" id="berkas1">
   </div>
   <div class="form-group">
     <label for="exampleFormControlFile1">Upload Surat pertanggungjawaban suami istri</label>
-    <input type="file" class="form-control-file" id="exampleFormControlFile1">
+    <input name="berkas2" type="file" class="form-control-file" id="berkas2">
+  </div>
+  <div class="form-group">
+    <label for="exampleFormControlFile1">Upload Surat pertanggungjawaban suami istri</label>
+    <input name="berkas3" type="file" class="form-control-file" id="berkas3">
   </div>
   <div class="col text-center">
-        <input type="hidden" name="req" value="postbayi">
+        <input type="hidden" name="req" value="postupload">
         <button type="submit" class="btn btn-success">Upload dan Lanjutkan</button>
     </div>
 </form>
