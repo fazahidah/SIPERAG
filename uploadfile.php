@@ -18,7 +18,7 @@ include_once("_header.php");
       </div>
     </div>
     <br>
-    <form>
+    <form action="service/ApiServices.php?req=uploadFile" method="POST">
   <div class="form-group">
     <label for="exampleFormControlFile1">Upload Surat pertanggungjawaban suami istri</label>
     <input name="berkas1" type="file" class="form-control-file" id="berkas1">

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 24, 2021 at 10:36 PM
+-- Generation Time: Jun 25, 2021 at 11:09 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.1
 
@@ -169,16 +169,19 @@ CREATE TABLE `user` (
   `role` varchar(5) NOT NULL,
   `email` varchar(30) NOT NULL,
   `password` varchar(128) NOT NULL,
-  `alamat` varchar(100) NOT NULL
+  `alamat` varchar(100) NOT NULL,
+  `verif` int(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`id_user`, `kode_user`, `NIK`, `no_telp`, `nama`, `username`, `role`, `email`, `password`, `alamat`) VALUES
-(9, 'USR1611365', '3525567891123456', '81615473321', 'Fatin Zahidah Mas\'ud', 'fatinzm', 'USER', 'fatinzahidah0@gmail.com', '$2y$10$ZV4v1QYs.n26FB429tuQgOZuJpJPGY6wrrrAiEUzpU25cgvFDBY3G', 'Jl. Raden Wijaya B2/24 Perum GWA, Sekarkurung, Kebomas, Gresik'),
-(10, 'USR2411132', '3578100206050006', '6283849575737', 'FAUZAN WIDYANTO', 'ojan', 'ADMIN', 'fauzan.widyanto1@gmail.com', '$2y$10$ZV4v1QYs.n26FB429tuQgOZuJpJPGY6wrrrAiEUzpU25cgvFDBY3G', 'KAPAS MADYA 3I/4');
+INSERT INTO `user` (`id_user`, `kode_user`, `NIK`, `no_telp`, `nama`, `username`, `role`, `email`, `password`, `alamat`, `verif`) VALUES
+(9, 'USR1611365', '3525567891123456', '81615473321', 'Fatin Zahidah Mas\'ud', 'fatinzm', 'USER', 'fatinzahidah0@gmail.com', '$2y$10$ZV4v1QYs.n26FB429tuQgOZuJpJPGY6wrrrAiEUzpU25cgvFDBY3G', 'Jl. Raden Wijaya B2/24 Perum GWA, Sekarkurung, Kebomas, Gresik', 1),
+(10, 'USR2411132', '3578100206050006', '6283849575737', 'FAUZAN WIDYANTO', 'ojan', 'ADMIN', 'fauzan.widyanto1@gmail.com', '$2y$10$ZV4v1QYs.n26FB429tuQgOZuJpJPGY6wrrrAiEUzpU25cgvFDBY3G', 'KAPAS MADYA 3I/4', 1),
+(11, 'USR2510260', '3678103108000007', '83847595938', 'SI OJAN', 'fauzan', 'USER', 'virgorasion1@gmail.com', '$2y$10$qlg.K/bVZvp4GzAzWeNh3.hf4TJLyHUMorvaYgRcYNaxpalwkTDKO', 'KAPS MADYA', 1),
+(12, 'USR2515025', '357819323423321', '8317231272', 'ORANG BARU', 'baru', 'USER', 'baru@gmail.com', '$2y$10$ZV4v1QYs.n26FB429tuQgOZuJpJPGY6wrrrAiEUzpU25cgvFDBY3G', 'BUMI', 1);
 
 --
 -- Indexes for dumped tables
@@ -261,7 +264,7 @@ ALTER TABLE `persetujuan`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
