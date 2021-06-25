@@ -81,7 +81,7 @@ include_once("_header.php");
 				</div>
 				<form action="service/ApiServices.php?req=persetujuan" method="post">
 					<div class="modal-body">
-						<div class="row">
+						<div class="row" style="">
 							<img src="assets/Foto-Formal.jpg" class="img-fluid rounded-top p-2" width="100" alt="">
 							<img src="assets/Foto-Formal.jpg" class="img-fluid rounded-top p-2" width="100" alt="">
 						</div>
